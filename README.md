@@ -4,7 +4,6 @@ Panduan singkat untuk memakai **Patungin** di OpenClaw lewat **local proxy** sup
 
 Untuk blueprint formal yang bisa dibaca anggota tim lain, lihat: [`docs/BLUEPRINT.md`](docs/BLUEPRINT.md).
 Untuk langkah super cepat clone + edit `openclaw.json` pakai `nano`/`vim`, lihat: [`docs/quick-start-for-team.md`](docs/quick-start-for-team.md).
-Untuk skenario public proxy + token per mesin, lihat: [`docs/public-proxy-token-management.md`](docs/public-proxy-token-management.md).
 
 ## Tujuan
 
