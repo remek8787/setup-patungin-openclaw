@@ -68,20 +68,17 @@ const server = http.createServer(async (req, res) => {
       }
     }
 
+    const responseBody = Buffer.from(await upstreamRes.arrayBuffer());
     res.writeHead(upstreamRes.status, outHeaders);
-    if (upstreamRes.body) {
-      const reader = upstreamRes.body.getReader();
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        res.write(Buffer.from(value));
-      }
-    }
-    res.end();
+    res.end(responseBody);
   } catch (error) {
     console.error(new Date().toISOString(), error?.stack || error);
-    res.writeHead(502, { 'content-type': 'application/json' });
-    res.end(JSON.stringify({ error: { message: String(error?.message || error), type: 'patungin_proxy_error' } }));
+    if (!res.headersSent) {
+      res.writeHead(502, { 'content-type': 'application/json' });
+      res.end(JSON.stringify({ error: { message: String(error?.message || error), type: 'patungin_proxy_error' } }));
+    } else {
+      res.destroy(error);
+    }
   }
 });
 
