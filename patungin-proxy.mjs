@@ -11,10 +11,13 @@ function getApiKey() {
 
   const data = JSON.parse(readFileSync(CONFIG_PATH, 'utf8'));
   const providers = data?.models?.providers || {};
-  const provider = providers.patungin || Object.values(providers).find((item) => item?.baseUrl?.includes('ai.patungin.id'));
+  const provider =
+    providers['costum-api-patungin-gpt-5.5'] ||
+    providers.patungin ||
+    Object.values(providers).find((item) => item?.baseUrl?.includes('ai.patungin.id'));
 
   if (!provider?.apiKey) {
-    throw new Error('Patungin apiKey not found. Set PATUNGIN_API_KEY or models.providers.patungin.apiKey');
+    throw new Error('Patungin apiKey not found. Set PATUNGIN_API_KEY or models.providers.costum-api-patungin-gpt-5.5.apiKey');
   }
 
   return provider.apiKey;

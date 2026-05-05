@@ -18,9 +18,9 @@ Untuk blueprint formal yang bisa dibaca anggota tim lain, lihat: [`docs/BLUEPRIN
 ```text
 OpenClaw Agent
   -> http://127.0.0.1:8787/v1
-  -> local Patungin proxy
+  -> local proxy alias `costum-api-patungin-gpt-5.5`
   -> https://ai.patungin.id/v1
-  -> model backend
+  -> model backend `gpt-5.5`
 ```
 
 ## Yang dipakai
@@ -29,6 +29,8 @@ OpenClaw Agent
 - **Health**: `http://127.0.0.1:8787/health`
 - **Upstream**: `https://ai.patungin.id/v1`
 - **Token model**: dari config provider OpenClaw atau env lokal, **bukan** dari repo ini
+- **Alias provider**: `costum-api-patungin-gpt-5.5`
+- **Model backend**: `gpt-5.5`
 - **Token proxy**: hanya kalau kamu sengaja aktifkan auth di proxy lokal
 
 ## Kenapa 403 bisa muncul
@@ -38,7 +40,7 @@ Biasanya karena salah satu ini:
 - OpenClaw langsung nembak upstream tanpa proxy lokal
 - base URL dipasang ganda, misalnya `/v1` dobel
 - header `Authorization` tidak sesuai format yang diminta upstream
-- API key Patungin belum ada di config provider OpenClaw
+- API key Patungin belum ada di config provider `costum-api-patungin-gpt-5.5` OpenClaw
 - request path salah, misalnya `/v1/v1/chat/completions`
 - proxy lokal tidak aktif atau tidak listen di loopback
 
@@ -73,7 +75,7 @@ Harus balas JSON semacam:
 
 ## Arahkan OpenClaw ke proxy lokal
 
-Kalau OpenClaw membaca config provider dari file config, set provider Patungin ke proxy lokal, bukan langsung ke upstream.
+Kalau OpenClaw membaca config provider dari file config, set provider `costum-api-patungin-gpt-5.5` ke proxy lokal, bukan langsung ke upstream.
 
 Contoh pola config:
 
@@ -81,7 +83,7 @@ Contoh pola config:
 {
   "models": {
     "providers": {
-      "patungin": {
+      "costum-api-patungin-gpt-5.5": {
         "baseUrl": "http://127.0.0.1:8787/v1",
         "apiKey": "PAKAI_TOKEN_PROVIDER_YANG_BENAR"
       }
@@ -145,7 +147,7 @@ Cek berurutan:
 
 ## Ringkasan cepat
 
-Kalau mau Patungin dipakai OpenClaw tanpa 403, jalurnya harus begini:
+Kalau mau Patungin dipakai OpenClaw tanpa 403, jalurnya harus begini (alias provider: `costum-api-patungin-gpt-5.5`, model: `gpt-5.5`):
 
 ```text
 OpenClaw -> 127.0.0.1:8787/v1 -> ai.patungin.id/v1
