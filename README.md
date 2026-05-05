@@ -2,6 +2,8 @@
 
 Panduan singkat untuk memakai **Patungin** di OpenClaw lewat **local proxy** supaya request AI tidak kena error 403 dari jalur yang salah.
 
+Untuk blueprint formal yang bisa dibaca anggota tim lain, lihat: [`docs/BLUEPRINT.md`](docs/BLUEPRINT.md).
+
 ## Tujuan
 
 - OpenClaw tetap pakai model Patungin.
@@ -9,6 +11,7 @@ Panduan singkat untuk memakai **Patungin** di OpenClaw lewat **local proxy** sup
 - Tidak membuka proxy ke publik.
 - Tidak menaruh token live di repo.
 - Menghindari 403 karena request langsung ke upstream yang salah atau header auth tidak konsisten.
+- Bisa direplikasi anggota tim lain di mesin masing-masing tanpa membagikan token live.
 
 ## Arsitektur
 
