@@ -31,7 +31,7 @@ http://127.0.0.1:8787/v1/v1
 Proxy akan mengambil token dari:
 
 1. env `PATUNGIN_API_KEY`, atau
-2. `models.providers.costum-api-patungin-gpt-5.5.apiKey` di config OpenClaw.
+2. `models.providers.costum-api-patungin-gpt-5-5.apiKey` di config OpenClaw.
 
 Jangan pakai token dashboard.
 
